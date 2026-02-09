@@ -54,10 +54,12 @@ export default {
             },
             defaultValue: 'button',
             bindable: true,
+            /* wwEditor:start */
             bindingValidation: {
                 type: 'string',
                 tooltip: 'A string that defines the button type: "button" | "submit"',
             },
+            /* wwEditor:end */
         },
         disabled: {
             label: { en: 'Disabled' },

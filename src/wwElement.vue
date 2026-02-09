@@ -111,7 +111,7 @@ export default {
     computed: {
         buttonStyle() {
             return {
-                justifyContent: TEXT_ALIGN_TO_JUSTIFY[this.content['_ww-text_textAlign']] || 'center',
+                justifyContent: TEXT_ALIGN_TO_JUSTIFY[this.content?.['_ww-text_textAlign']] || 'center',
             };
         },
         isEditing() {
@@ -127,9 +127,9 @@ export default {
                 return this.linkTag;
             }
             if (
-                this.content.buttonType === 'submit' ||
-                this.content.buttonType === 'reset' ||
-                this.content.buttonType === 'button'
+                this.content?.buttonType === 'submit' ||
+                this.content?.buttonType === 'reset' ||
+                this.content?.buttonType === 'button'
             )
                 return 'button';
             return 'div';
@@ -137,11 +137,11 @@ export default {
         buttonType() {
             if (this.isEditing || this.hasLink) return '';
             if (
-                this.content.buttonType === 'submit' ||
-                this.content.buttonType === 'reset' ||
-                this.content.buttonType === 'button'
+                this.content?.buttonType === 'submit' ||
+                this.content?.buttonType === 'reset' ||
+                this.content?.buttonType === 'button'
             )
-                return this.content.buttonType;
+                return this.content?.buttonType;
             return '';
         },
         text() {
@@ -171,7 +171,7 @@ export default {
                 if (this.wwEditorState.isACopy) {
                     return;
                 }
-                if (hasRightIcon && !this.content.rightIcon) {
+                if (hasRightIcon && !this.content?.rightIcon) {
                     const content = await this.createElement('ww-icon');
                     this.$emit('update:content:effect', { rightIcon: content });
                 }
@@ -182,7 +182,7 @@ export default {
                 if (this.wwEditorState.isACopy) {
                     return;
                 }
-                if (hasLeftIcon && !this.content.leftIcon) {
+                if (hasLeftIcon && !this.content?.leftIcon) {
                     const content = await this.createElement('ww-icon');
                     this.$emit('update:content:effect', { leftIcon: content });
                 }
@@ -547,7 +547,6 @@ export default {
     user-select: none;
     padding: 0 var(--btn-p, 1rem);
     color: var(--btn-fg, var(--color-base-content));
-    height: var(--size, calc(var(--size-field, 0.25rem) * 10));
     min-height: var(--size, calc(var(--size-field, 0.25rem) * 10));
     font-size: var(--fontsize, 0.875rem);
     outline-color: var(--color-base-content);
@@ -565,9 +564,7 @@ export default {
     line-height: 1;
     text-decoration: none;
     transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s, filter 0.2s;
-    display: inline-flex;
     font-family: inherit;
-    min-width: 4rem;
 }
 
 /* Hover */
