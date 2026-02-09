@@ -14,7 +14,20 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
+
+const DAISYUI_CDN = 'https://cdn.jsdelivr.net/npm/daisyui@5.5.18/daisyui.css';
+const LINK_ID = 'daisyui-cdn-css';
+
+function injectDaisyUI() {
+  const doc = wwLib.getFrontDocument();
+  if (doc.getElementById(LINK_ID)) return;
+  const link = doc.createElement('link');
+  link.id = LINK_ID;
+  link.rel = 'stylesheet';
+  link.href = DAISYUI_CDN;
+  doc.head.appendChild(link);
+}
 
 export default {
   props: {
@@ -25,6 +38,10 @@ export default {
     /* wwEditor:end */
   },
   setup(props, { emit }) {
+    onMounted(() => {
+      injectDaisyUI();
+    });
+
     const classes = computed(() => {
       const c = ['btn'];
 
